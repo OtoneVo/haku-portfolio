@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haku ｜ ポートフォリオ</title>
+<style>
+  :root{
+    --bg:#f6f7fb; --card:#ffffff; --card2:#f0f2f8; --ink:#1d2333; --sub:#5b6478;
+    --line:#e2e6ef; --accent:#3b6fe0; --accent2:#7c5cf0; --chip:#eef1f9; --ok:#1f9d6b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;
+    background:radial-gradient(1200px 600px at 80% -10%,#e7ecfb 0%,transparent 60%),var(--bg);
+    color:var(--ink); line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:48px 24px 80px}
+  header.hero{padding:8px 0 28px;border-bottom:1px solid var(--line);margin-bottom:36px}
+  .eyebrow{color:var(--accent);font-weight:700;letter-spacing:.06em;font-size:.82rem}
+  h1{font-size:2.5rem;line-height:1.2;margin:10px 0 12px;letter-spacing:.01em}
+  h1 .accent{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{color:var(--sub);font-size:1.05rem;max-width:640px}
+  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:26px}
+  .meta div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .meta dt{color:var(--sub);font-size:.72rem;letter-spacing:.04em;margin-bottom:3px}
+  .meta dd{font-size:.95rem;font-weight:600}
+  section{margin:40px 0}
+  h2{font-size:1.35rem;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+  h2::before{content:"";width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+  .section-sub{color:var(--sub);font-size:.92rem;margin-bottom:18px}
+  .stack{display:grid;grid-template-columns:1fr;gap:12px}
+  .stack .row{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .stack .row b{color:var(--ink);display:block;margin-bottom:4px}
+  .stack .row span{color:var(--sub);font-size:.92rem}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+  .card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card h3{font-size:1.02rem;margin-bottom:8px;color:var(--ink)}
+  .card p{color:var(--sub);font-size:.9rem}
+  .card .tags{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+  .tag{background:var(--chip);border:1px solid var(--line);color:var(--accent);font-size:.72rem;padding:3px 9px;border-radius:999px;font-weight:600}
+  .kpi{color:var(--ok);font-weight:700}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);font-size:.92rem;vertical-align:top}
+  th{color:var(--sub);font-weight:600;width:34%;background:#f4f6fc}
+  tr:last-child td,tr:last-child th{border-bottom:none}
+  ol.strength{list-style:none;counter-reset:s;display:grid;gap:10px}
+  ol.strength li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px 14px 52px;position:relative}
+  ol.strength li::before{content:counter(s);position:absolute;left:14px;top:14px;width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;display:grid;place-items:center;font-size:.85rem}
+  ol.strength b{color:var(--ink)}
+  ol.strength span{color:var(--sub)}
+  footer{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);color:var(--sub);font-size:.9rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  footer a{color:var(--accent);text-decoration:none}
+  .note{color:var(--sub);font-size:.82rem;margin-top:10px;font-style:italic}
+  .shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .shots figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .shots img{width:100%;display:block;border-bottom:1px solid var(--line)}
+  .shots figcaption{color:var(--sub);font-size:.8rem;padding:10px 12px;line-height:1.5}
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+  .feat-col{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .feat-col b{display:block;color:var(--accent);margin-bottom:6px;font-size:.9rem}
+  .feat-col span{color:var(--sub);font-size:.9rem}
+  code{background:var(--chip);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:.85em;color:#33405c}
+  @media(max-width:640px){.feat{grid-template-columns:1fr}}
+  /* soft depth for light theme */
+  .card,.shots figure,table,.meta div,.stack .row,ol.strength li,.feat-col{box-shadow:0 1px 2px rgba(20,30,60,.04),0 6px 18px rgba(20,30,60,.05)}
+  .card:hover,.shots figure:hover{box-shadow:0 2px 6px rgba(20,30,60,.06),0 12px 28px rgba(20,30,60,.09);transition:box-shadow .2s ease}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">PORTFOLIO</div>
+    <h1>Haku <span class="accent">SE × AI活用</span></h1>
+    <p class="lede">既存システムの仕様把握・試験・リリース調整を担当するSE。個人制作ではClaude Agent／Skillと自作AIシステムに取り組んでいます。</p>
+    <dl class="meta">
+      <div><dt>ポジション</dt><dd>SE／AI活用・個人制作</dd></div>
+      <div><dt>経験年数</dt><dd>Python実務 約5年／JS使用 約4年／TS使用 約3年</dd></div>
+      <div><dt>稼働</dt><dd>月40〜80h相談・平日夜／土日</dd></div>
+      <div><dt>時間単価</dt><dd>個別相談</dd></div>
+      <div><dt>X</dt><dd>@haku_se_ai</dd></div>
+      <div><dt>GitHub</dt><dd>OtoneVo</dd></div>
+    </dl>
+  </header>
+
+  <section>
+    <h2>プロフィール</h2><p class="section-sub">既存システムの仕様把握と試験、仕様・進捗調整からリリースまでを担当。個人制作ではClaude Agent／Skillと自作AIシステムに取り組んでいます。</p></section>
+
+  <section>
+    <h2>個人制作 ｜ AIシステム・Agent／Skill</h2><p class="section-sub">Claude Agent／Skillと自作AIシステムを制作。作業の指示・実行・結果確認を支援する仕組みに取り組んでいます。</p></section>
+
+  <section>
+    <h2>技術スタック</h2>
+    <div class="stack">
+      <div class="row"><b>生成AI／LLM</b><span>個人制作：Claude Agent／Skill、自作AIシステム。意味検索デモは準備中。</span></div>
+      <div class="row"><b>言語・ライブラリ</b><span>実務：Python 約5年。使用歴：JavaScript 約4年／TypeScript 約3年。学習中：React／Go。</span></div>
+      <div class="row"><b>周辺</b><span>AWSは実務利用経験あり（新規構築経験なし）。個人制作のReact／API／Docker／CI構成は設計段階。</span></div>
+    </div>
+  </section>
+
+
+
+  <section>
+    <h2>本業経歴サマリ</h2>
+    <table>
+      <tr><th>職種</th><td>システムエンジニア（業務システム領域）</td></tr>
+      <tr><th>経験年数</th><td>5年</td></tr>
+      <tr><th>担当範囲</th><td>既存コードのリバース・仕様把握と試験、仕様・進捗の調整からリリースまでを担当</td></tr>
+      
+    </table>
+    <div class="cards">
+      <div class="card"><h3>基本設計書レビューAgent</h3><p>本業の実案件で試行・利用中。対象案件では、人によるレビュー・確認工数を1.5〜2人日から0.5人日に短縮（約67〜75％削減）。AIが約5分で60〜70件の指摘候補を生成し、人が妥当性を確認。他案件への横展開も検討中。<br><span class="note">本人申告による当該レビューでの人手工数の比較。指摘候補は人が確認。対象範囲・準備等の追加工数の比較条件は未確認です。</span></p></div>
+      <div class="card"><h3>議事録生成Agent</h3><p>本業で利用中。議事録の生成を支援するAgentを作成・活用しています。</p></div>
+      <div class="card"><h3>ドキュメント変換ツール</h3><p>開発中。実用段階に近づいており、専用エディタを制作しています。</p></div>
+    </div>
+    <p class="note">※ 社名・顧客名・画面・コード・内部構成は含めていません。</p>
+  </section>
+
+
+
+  <section>
+    <h2>稼働・契約条件</h2>
+    <table>
+      <tr><th>稼働時間</th><td>月40〜80h（相談）</td></tr>
+      <tr><th>稼働帯</th><td>平日夜・土日中心。日中の対応は事前に予定を共有いただいたうえで検討</td></tr>
+      <tr><th>リモート／対面</th><td>完全フルリモートを希望</td></tr>
+      <tr><th>時間単価</th><td>業務範囲・稼働条件に応じて個別相談</td></tr>
+      <tr><th>契約形態</th><td>業務委託（準委任／請負ともに対応可）</td></tr>
+      <tr><th>開始時期</th><td>応相談</td></tr>
+    </table>
+  </section>
+
+  <footer>
+    <span>Haku ｜ SE × AI活用</span>
+    <span>X <a href="https://x.com/haku_se_ai">@haku_se_ai</a> ／ GitHub <a href="https://github.com/OtoneVo">OtoneVo</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
